@@ -1,0 +1,27 @@
+# Количество реплик
+replicaCount: 2
+
+# Настройки образа
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: "1.25"
+
+# Настройки Service
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+
+# Настройки Ingress
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  host: myapp.example.com
+
+# Переменные окружения
+env:
+  APP_VERSION: "1.0"
+  ENVIRONMENT: "production"
